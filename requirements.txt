@@ -1,4 +1,5 @@
 aiohttp>=3.7.4,<4
-discord.py>=2.0.1
+disnake>=2.9.1
 yarl>=1.9.2
 async_timeout
+loguru
