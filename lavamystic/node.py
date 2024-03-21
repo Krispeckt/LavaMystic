@@ -58,7 +58,7 @@ class Node:
     """The Node represents a connection to Lavalink.
 
     The Node is responsible for keeping the websocket alive, resuming session, sending API requests and keeping track
-    of connected all :class:`~lava.Player`.
+    of connected all :class:`~lavamystic.Player`.
 
     .. container:: operations
 

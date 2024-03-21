@@ -708,7 +708,16 @@ class Player(disnake.VoiceProtocol):
 
         self._paused = value
 
-    resume = pause
+    async def resume(self, value: bool, /) -> None:
+        """Set the resume state of the player.
+
+        Parameters
+        ----------
+        value: bool
+            A bool indicating whether the player should be resumed. True indicates that the player should be
+            ``resumed``. False will pause the player if it is currently playing.
+        """
+        return await self.pause(not value)
 
     async def seek(self, position: int = 0, /) -> None:
         """Seek to the provided position in the currently playing track, in milliseconds.
