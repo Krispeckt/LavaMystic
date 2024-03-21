@@ -29,7 +29,7 @@ classifiers = [
 "Homepage" = "https://github.com/Krispeckt/LavaMystic"
 
 [tool.setuptools]
-packages = ["lavamystic", "lavamytic.types", "lavamystic.utils", "lavamystic.utils.decode"]
+packages = ["lavamystic", "lavamystic.types", "lavamystic.utils", "lavamystic.utils.decode"]
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
