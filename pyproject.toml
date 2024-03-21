@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lavamystic"
+version = "1.0.0"
+authors = [
+  { name="PythonistaGuild, EvieePy, Krista", email="contactchisato@gmail.com" },
+]
+dynamic = ["dependencies"]
+description = "A robust and powerful, fully asynchronous Lavalink wrapper built for disnake in Python."
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+        "License :: OSI Approved :: MIT License",
+        "Intended Audience :: Developers",
+        "Natural Language :: English",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Topic :: Internet",
+        "Topic :: Software Development :: Libraries",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Utilities",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Krispeckt/LavaMystic"
+
+[tool.setuptools]
+packages = ["lavamystic", "lavamytic.types", "lavamystic.utils", "lavamystic.utils.decode"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.package-data]
+lavamystic = ["py.typed"]
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+
+[tool.pyright]
+ignore = ["test*.py", "examples/*.py", "docs/*"]
+pythonVersion = "3.11"
+typeCheckingMode = "strict"
+reportPrivateUsage = false
