@@ -165,21 +165,21 @@ class Player(disnake.VoiceProtocol):
         cancelled: bool = task.cancelled()
 
         if cancelled or result is False:
-            logger.debug("Disregarding Inactivity Check Task <%s> as it was previously cancelled.", task.get_name())
+            logger.debug(f"Disregarding Check Task {task.get_name()} as it was previously cancelled.")
             return
 
         if not result:
-            logger.debug("Disregarding Inactivity Check Task <%s> as it received an unknown result.", task.get_name())
+            logger.debug(f"Disregarding Check Task {task.get_name()} as it received an unknown result.")
             return
 
         if self.playing:
             logger.debug(
-                "Disregarding Inactivity Check Task <%s> as Player <%s> is playing.", task.get_name(), self._guild.id
+                f"Disregarding Check Task {task.get_name()} as Player {self._guild.id} is playing.",
             )
             return
 
         self.client.dispatch("mystic_inactive_player", self)
-        logger.debug('Dispatched "on_mystic_inactive_player" for Player <%s>.', self._guild.id)
+        logger.debug(f'Dispatched "on_mystic_inactive_player" for Player {self._guild.id}.')
 
     @staticmethod
     async def _runner(wait: int) -> bool:
@@ -473,8 +473,11 @@ class Player(disnake.VoiceProtocol):
         logger.debug(f"Player {self.guild.id} is dispatching VOICE_UPDATE.")
 
     @classmethod
-    async def connect_to_channel(cls, channel: VocalGuildChannel) -> Player:
-        return await channel.connect(cls=cls)
+    async def connect_to_channel(cls, channel: VocalGuildChannel, /, **kwargs) -> Player:
+        player = await channel.connect(cls=cls)
+        player.add_to_namespace(kwargs)
+
+        return player
 
     async def connect(
         self, *, timeout: float = 10.0, reconnect: bool, self_deaf: bool = True, self_mute: bool = False
@@ -749,16 +752,8 @@ class Player(disnake.VoiceProtocol):
             Whether to seek immediately when applying these filters. Seeking uses more resources, but applies the
             filters immediately. Defaults to ``False``.
 
-
-        .. versionchanged:: 3.0.0
-
-            This method now accepts a positional-only argument of filters, which now defaults to None. Filters
-            were redesigned in this version, see: :class:`Filters`.
-
-
-        .. versionchanged:: 3.0.0
-
-            This method was previously known as ``set_filter``.
+        This method now accepts a positional-only argument of filters, which now defaults to None. Filters
+        were redesigned in this version, see: :class:`Filters`.
         """
         assert self.guild is not None
 
@@ -785,10 +780,7 @@ class Player(disnake.VoiceProtocol):
         value: int
             A volume value between 0 and 1000. To reset the player to 100, you can disregard this parameter.
 
-
-        .. versionchanged:: 3.0.0
-
-            The ``value`` parameter is now positional-only, and has a default of 100.
+        The ``value`` parameter is now positional-only, and has a default of 100.
         """
         assert self.guild is not None
         vol: int = max(min(value, 1000), 0)
