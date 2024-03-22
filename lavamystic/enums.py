@@ -129,7 +129,7 @@ class DefaultDecode(enum.Enum):
     @staticmethod
     def _decode_probe_info(reader: DataReader) -> dict[str, Any]:
         probe_info = reader.read_utf().decode()
-        return {'probe_info': probe_info}
+        return {'probeInfo': probe_info}
 
     @staticmethod
     def _decode_lavasrc_fields(reader: DataReader) -> dict[str, Any]:
@@ -144,12 +144,12 @@ class DefaultDecode(enum.Enum):
         is_preview = reader.read_boolean()
 
         return {
-            'album_name': album_name,
-            'album_url': album_url,
-            'artist_url': artist_url,
-            'artist_artwork_url': artist_artwork_url,
-            'preview_url': preview_url,
-            'is_preview': is_preview
+            'albumName': album_name,
+            'albumUrl': album_url,
+            'artistUrl': artist_url,
+            'artistArtworkUrl': artist_artwork_url,
+            'previewUrl': preview_url,
+            'isPreview': is_preview
         }
 
     @classmethod

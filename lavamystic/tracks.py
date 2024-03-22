@@ -322,7 +322,7 @@ class Playable:
         return await lavamystic.Pool.fetch_tracks(prefix)
 
     @staticmethod
-    def _read_track_common(reader: DataReader) -> Tuple[str, str, int, str, bool, Optional[str]]:
+    def _read_track_common(reader: DataReader) -> tuple[str, str, int, str, bool, str]:
         """
         Reads common fields between v1-3 AudioTracks.
 
@@ -343,7 +343,7 @@ class Playable:
             length,
             identifier,
             is_stream,
-            uri
+            str(uri)
         )
 
     @classmethod
