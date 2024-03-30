@@ -41,6 +41,7 @@ class TrackSource(enum.Enum):
     Spotify = "spsearch"
     YandexMusic = "ymsearch"
     VkMusic = "vksearch"
+    AppleMusic = "amsearch"
 
 
 class DisnakeVoiceCloseType(enum.Enum):
