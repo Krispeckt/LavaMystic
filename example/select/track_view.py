@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from disnake import Interaction, SelectOption, MessageInteraction
 from disnake.ext.commands import Bot
-from disnake.ui import StringSelect, View, select, Select
+from disnake.ui import View, select, Select
 
 from lavamystic import Playable
 
@@ -40,6 +40,8 @@ class SelectTrack(View):
                     )
                 )
                 self._from_value[str(i)] = track
+
+            self.select.options = options
         else:
             raise ValueError("Gave empty tracks")
 
