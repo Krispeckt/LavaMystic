@@ -117,15 +117,8 @@ class Player(disnake.VoiceProtocol):
         self._volume: int = 100
         self._paused: bool = False
 
-        self._auto_cutoff: int = 20
-        self._auto_weight: int = 3
-        self._previous_seeds_cutoff: int = self._auto_cutoff * self._auto_weight
-        self._history_count: int | None = None
-
         self._autoplay: lavamystic.AutoPlayMode = lavamystic.AutoPlayMode.partial
-        self.__previous_seeds: asyncio.Queue[str] = asyncio.Queue(maxsize=self._previous_seeds_cutoff)
 
-        self._auto_lock: asyncio.Lock = asyncio.Lock()
         self._error_count: int = 0
 
         self._filters: Filters = Filters()
