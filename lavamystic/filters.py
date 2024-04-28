@@ -142,6 +142,11 @@ class Equalizer:
     def __repr__(self) -> str:
         return f"<Equalizer: {self._payload}>"
 
+    def __eq__(self, other: Equalizer) -> bool:
+        if isinstance(other, Equalizer):
+            return self.payload == other.payload
+        return False
+
 
 class Karaoke:
     """Karaoke Filter class.
@@ -197,6 +202,11 @@ class Karaoke:
     def __repr__(self) -> str:
         return f"<Karaoke: {self._payload}>"
 
+    def __eq__(self, other: Karaoke) -> bool:
+        if isinstance(other, Karaoke):
+            return self.payload == other.payload
+        return False
+
 
 class Timescale:
     """Timescale Filter class.
@@ -245,6 +255,11 @@ class Timescale:
     def __repr__(self) -> str:
         return f"<Timescale: {self._payload}>"
 
+    def __eq__(self, other: Timescale) -> bool:
+        if isinstance(other, Timescale):
+            return self.payload == other.payload
+        return False
+
 
 class Tremolo:
     """The Tremolo Filter class.
@@ -292,6 +307,11 @@ class Tremolo:
     def __repr__(self) -> str:
         return f"<Tremolo: {self._payload}>"
 
+    def __eq__(self, other: Tremolo) -> bool:
+        if isinstance(other, Tremolo):
+            return self.payload == other.payload
+        return False
+
 
 class Vibrato:
     """The Vibrato Filter class.
@@ -338,6 +358,11 @@ class Vibrato:
     def __repr__(self) -> str:
         return f"<Vibrato: {self._payload}>"
 
+    def __eq__(self, other: Vibrato) -> bool:
+        if isinstance(other, Vibrato):
+            return self.payload == other.payload
+        return False
+
 
 class Rotation:
     """The Rotation Filter class.
@@ -382,6 +407,11 @@ class Rotation:
 
     def __repr__(self) -> str:
         return f"<Rotation: {self._payload}>"
+
+    def __eq__(self, other: Rotation) -> bool:
+        if isinstance(other, Rotation):
+            return self.payload == other.payload
+        return False
 
 
 class Distortion:
@@ -450,6 +480,11 @@ class Distortion:
     def __repr__(self) -> str:
         return f"<Distortion: {self._payload}>"
 
+    def __eq__(self, other: Distortion) -> bool:
+        if isinstance(other, Distortion):
+            return self.payload == other.payload
+        return False
+
 
 class ChannelMix:
     """The ChannelMix Filter class.
@@ -508,6 +543,11 @@ class ChannelMix:
     def __repr__(self) -> str:
         return f"<ChannelMix: {self._payload}>"
 
+    def __eq__(self, other: ChannelMix) -> bool:
+        if isinstance(other, ChannelMix):
+            return self.payload == other.payload
+        return False
+
 
 class LowPass:
     """The LowPass Filter class.
@@ -552,6 +592,11 @@ class LowPass:
 
     def __repr__(self) -> str:
         return f"<LowPass: {self._payload}>"
+
+    def __eq__(self, other: LowPass) -> bool:
+        if isinstance(other, LowPass):
+            return self.payload == other.payload
+        return False
 
 
 class Filters:
@@ -740,3 +785,19 @@ class Filters:
             f" rotation={self._rotation!r}, distortion={self._distortion!r}, channel_mix={self._channel_mix!r},"
             f" low_pass={self._low_pass!r}>"
         )
+
+    def __eq__(self, other: Filters) -> bool:
+        if isinstance(other, Filters):
+            return all([
+                other.volume == self.volume,
+                other.equalizer == self.equalizer,
+                other.karaoke == self.karaoke,
+                other.timescale == self.timescale,
+                other.tremolo == self.tremolo,
+                other.vibrato == self.vibrato,
+                other.rotation == self.rotation,
+                other.distortion == self.distortion,
+                other.channel_mix == self.channel_mix,
+                other.low_pass == self.low_pass,
+            ])
+        return False
