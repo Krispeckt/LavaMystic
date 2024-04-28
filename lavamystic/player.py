@@ -760,8 +760,6 @@ class Player(disnake.VoiceProtocol):
         if self.playing and seek:
             await self.seek(self.position)
 
-        self.dispatch_message_update()
-
     async def set_volume(self, value: int = 100, /) -> None:
         """Set the :class:`Player` volume, as a percentage, between 0 and 1000.
 
