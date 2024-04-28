@@ -786,6 +786,19 @@ class Filters:
             f" low_pass={self._low_pass!r}>"
         )
 
+    def __hash__(self) -> int:
+        return hash(
+            f"{self.volume!r}" +
+            f"{self.equalizer!r}" +
+            f"{self.karaoke!r}" +
+            f"{self.tremolo!r}" +
+            f"{self.vibrato!r}" +
+            f"{self.rotation!r}" +
+            f"{self.distortion!r}" +
+            f"{self.channel_mix!r}" +
+            f"{self.low_pass!r}"
+        )
+
     def __eq__(self, other: Filters) -> bool:
         if isinstance(other, Filters):
             return all([
